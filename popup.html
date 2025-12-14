@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONGRATULATIONS! YOU'RE A WINNER!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background-color: #0000AA;
+            color: #00FF00;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            background-image: url('https://i.imgur.com/8KQZ3ZG.gif');
+        }
+        
+        .popup-container {
+            background-color: #0000FF;
+            border: 3px solid #FF00FF;
+            padding: 15px;
+            margin: 10px;
+            box-shadow: 0 0 15px #FF00FF;
+        }
+        
+        h1 {
+            color: #FFFF00;
+            text-shadow: 2px 2px 0 #FF00FF;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        
+        .blink {
+            animation: blink 1s steps(2, start) infinite;
+            color: #FF0000;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+        
+        .prize-image {
+            max-width: 100%;
+            border: 3px solid #00FFFF;
+            margin: 10px 0;
+        }
+        
+        .claim-button {
+            display: inline-block;
+            background: linear-gradient(to bottom, #FF0000, #990000);
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 15px 0;
+            text-decoration: none;
+            border: 2px solid #FFFF00;
+            border-radius: 15px;
+            text-shadow: 1px 1px 0 #000000;
+            box-shadow: 0 0 10px #FF0000;
+        }
+        
+        .claim-button:hover {
+            background: linear-gradient(to bottom, #FF3333, #CC0000);
+        }
+        
+        .disclaimer {
+            font-size: 10px;
+            color: #CCCCCC;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .counter {
+            font-size: 12px;
+            color: #00FFFF;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <a href="#" class="close-button" onclick="window.close(); return false;">X</a>
+        
+        <h1>CONGRATULATIONS!</h1>
+        <p>You are our <span class="blink">1,000,000th VISITOR!</span></p>
+        
+        <img src="https://web.archive.org/web/20091027013549/http://geocities.com/EnchantedForest/Glade/2300/undercon2.gif" alt="You Win!" class="prize-image">
+        
+        <p>You've won a <span class="blink">FREE IPOD NANO!</span></p>
+        <p>CLICK THE BUTTON BELOW TO CLAIM YOUR PRIZE!</p>
+        
+        <div class="counter">
+            <p>OFFER EXPIRES IN: <span id="popup-countdown">00:30</span></p>
+            <p>HURRY! <span id="visitor-count">42</span> people are viewing this offer!</p>
+        </div>
+        
+        <a href="#" class="claim-button" onclick="alert('Thank you for your interest! Please complete 10 offers to claim your prize!'); window.close();">
+            CLICK HERE TO CLAIM NOW!
+        </a>
+        
+        <p class="disclaimer">
+            * Must be 18 or older to win. Internet access required. One prize per household. 
+            Not valid in all states. Void where prohibited. Your soul may be required as collateral. 
+            By clicking the button above, you agree to receive special offers from our partners.
+        </p>
+    </div>
+    
+    <script>
+        // Countdown timer
+        var timeLeft = 30;
+        var countdown = setInterval(function() {
+            timeLeft--;
+            document.getElementById('popup-countdown').textContent = 
+                '00:' + (timeLeft < 10 ? '0' : '') + timeLeft;
+                
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                window.close();
+            }
+        }, 1000);
+        
+        // Fake visitor counter
+        setInterval(function() {
+            var visitors = parseInt(document.getElementById('visitor-count').textContent);
+            visitors += Math.floor(Math.random() * 3) + 1;
+            document.getElementById('visitor-count').textContent = visitors;
+        }, 2000);
+    </script>
+</body>
+</html>
